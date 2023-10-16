@@ -168,7 +168,6 @@ export default function Home({ wallet, env, isPWA = false, onLogout }) {
       env: env ? env : getEnv(),
     };
     const address = await getAddress(signer);
-
     if (!address) return;
     let keys = loadKeys(address);
     if (!keys) {

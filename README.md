@@ -1,4 +1,4 @@
-# XMTP PWA with Privy Tutorial
+# XMTP PWA with WalletConnect & Wagmi
 
 ### Installation
 
@@ -7,52 +7,56 @@ bun install
 bun start
 ```
 
-This tutorial will guide you through the process of creating an XMTP app with Privy.
+This tutorial will guide you through the process of creating an XMTP app with WalletConnect & Wagmi.
 
 ### Step 1: Setup
 
-First, you need to import the necessary libraries and components. In your index.js file, import the `PrivyProvider` from @privy-io/react-auth and wrap your main component with it.
+First, you need to import the necessary libraries and components. In your index.js file, import the `WagmiConfig` from `wagmi` and wrap your main component with it.
 
 ```jsx
-import { PrivyProvider } from "@privy-io/react-auth";
+import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
+import { WagmiConfig } from "wagmi";
+import { arbitrum, mainnet } from "wagmi/chains";
+
+// 1. Get projectId
+const projectId = "projectId";
+
+// 2. Create wagmiConfig
+const metadata = {
+  name: "Web3Modal",
+  description: "Web3Modal Example",
+  url: "https://web3modal.com",
+  icons: ["https://avatars.githubusercontent.com/u/37784886"],
+};
+
+const chains = [mainnet, arbitrum];
+const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
+
+createWeb3Modal({ wagmiConfig, projectId, chains });
 ```
 
 ```jsx
-<PrivyProvider
-appId={process.env.REACT_APP_PRIVY_APP_ID}
-onSuccess={(user) => console.log(User ${user.id} logged in!)}
->
-<InboxPage />
-</PrivyProvider>
+<WagmiConfig config={wagmiConfig}>
+  <InboxPage />
+</WagmiConfig>
 ```
 
 ### Step 2: User Authentication
 
-In your main component, use the `usePrivy` hook to get the user's authentication status and other details.
+In your main component, use the `useAccount` hook to get the user's authentication status and other details.
 
 ```jsx
-const { ready, authenticated, user, login, logout } = usePrivy();
+const { address, isConnecting, isDisconnected } = useAccount();
 ```
 
 ### Step 3: Wallet Integration
 
-Use the `useWallets` hook to get the user's wallets. Then, find the embedded wallet and set it as the signer.
+Use the `useWalletClient` hook to get the user's wallets. Then, find the embedded wallet and set it as the signer.
 
 ```jsx
-useEffect(() => {
-  const getSigner = async () => {
-    const embeddedWallet =
-      wallets.find((wallet) => wallet.walletClientType === "privy") ||
-      wallets[0];
-    if (embeddedWallet) {
-      const provider = await embeddedWallet.getEthersProvider();
-      setSigner(provider.getSigner());
-    }
-  };
-
-  if (wallets.length > 0) {
-    getSigner();
-  }
+//This is the signer to send to the xmtp client
+const { data: walletClient } = useWalletClient();
+await initialize({ keys, options, signer /*: walletClient*/ });
 ```
 
 ### Step 4: XMTP Integration
@@ -101,4 +105,4 @@ const handleLogout = async () => {
 };
 ```
 
-That's it! You've now created an XMTP app with Privy.
+That's it! You've now created an XMTP app with WalletConnect & Wagmi.
