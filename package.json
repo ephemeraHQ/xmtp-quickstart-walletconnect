@@ -1,0 +1,51 @@
+{
+  "name": "xmtp-quickstart-hooks",
+  "version": "0.1.0",
+  "private": true,
+  "start_url": "/",
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "dependencies": {
+    "@web3modal/wagmi": "^3.1.0",
+    "@xmtp/react-sdk": "^1.4.0",
+    "axios": "^1.5.0",
+    "buffer": "^6.0.3",
+    "ethers": "^5.7.0",
+    "install": "^0.13.0",
+    "npm": "^10.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.7",
+    "react-scripts": "5.0.1",
+    "styled-components": "^6.0.8",
+    "viem": "^1.16.6",
+    "wagmi": "^1.4.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
