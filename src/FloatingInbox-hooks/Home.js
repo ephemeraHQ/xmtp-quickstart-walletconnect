@@ -133,7 +133,7 @@ export default function Home({ wallet, env, isPWA = false, onLogout }) {
   }, [wallet, signer, client]);
 
   const connectWallet = async () => {
-    /* if (typeof window.ethereum !== "undefined") {
+    if (typeof window.ethereum !== "undefined") {
       try {
         await window.ethereum.enable();
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -144,7 +144,7 @@ export default function Home({ wallet, env, isPWA = false, onLogout }) {
       }
     } else {
       console.error("Metamask not found");
-    }*/
+    }
   };
 
   const getAddress = async (signer) => {
@@ -152,9 +152,10 @@ export default function Home({ wallet, env, isPWA = false, onLogout }) {
       if (signer && typeof signer.getAddress === "function") {
         return await signer.getAddress();
       }
-      if (signer && signer.account && signer.account.address) {
+      if (signer && typeof signer.getAddresses === "function") {
         //viem
-        return signer.account.address;
+        const [address] = await signer.getAddresses();
+        return address;
       }
       return null;
     } catch (e) {
@@ -166,9 +167,8 @@ export default function Home({ wallet, env, isPWA = false, onLogout }) {
     const options = {
       env: env ? env : getEnv(),
     };
-    console.log(signer);
     const address = await getAddress(signer);
-    console.log(address, signer);
+
     if (!address) return;
     let keys = loadKeys(address);
     if (!keys) {

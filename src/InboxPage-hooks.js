@@ -10,10 +10,6 @@ const InboxPage = () => {
   const { address, isConnecting, isDisconnected } = useAccount();
   const [loggingOut, setLoggingOut] = useState(false); // Add this line
 
-  useEffect(() => {
-    console.log(address, isConnecting, isDisconnected, walletClient);
-  }, [address, isConnecting, isConnecting, walletClient]);
-
   const handleLogout = async () => {
     setLoggingOut(true);
     await disconnect();
