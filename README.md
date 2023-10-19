@@ -9,9 +9,7 @@ bun start
 
 This tutorial will guide you through the process of creating an XMTP app with WalletConnect & Wagmi.
 
-![](./video.png)
-![](/video.png)
-![](video.png)
+![](https://github.com/fabriguespe/xmtp-quickstart-pwa-walletconnect/blob/main/public/video.mp4)
 
 ### Step 1: Setup
 
