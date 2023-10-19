@@ -9,6 +9,8 @@ bun start
 
 This tutorial will guide you through the process of creating an XMTP app with WalletConnect & Wagmi.
 
+![](video.png)
+
 ### Step 1: Setup
 
 First, you need to import the necessary libraries and components. In your index.js file, import the `WagmiConfig` from `wagmi` and wrap your main component with it.
