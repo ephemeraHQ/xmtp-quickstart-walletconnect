@@ -1,7 +1,7 @@
 import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
 import { WagmiConfig } from "wagmi";
 import { useEffect, useState } from "react";
-import InboxPage from "./InboxPage-hooks";
+import Page from "./Page";
 import {
   arbitrum,
   avalanche,
@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       {ready ? (
         <WagmiConfig config={wagmiConfig}>
-          <InboxPage />
+          <Page />
         </WagmiConfig>
       ) : null}
     </>

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FloatingInbox } from "./FloatingInbox-hooks";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { useAccount, useContract, useWalletClient } from "wagmi";
+import { useAccount, useWalletClient } from "wagmi";
 import { disconnect } from "@wagmi/core";
 
-const InboxPage = () => {
+const Page = () => {
   const { open } = useWeb3Modal();
   const { data: walletClient } = useWalletClient();
-  const { address, isConnecting, isDisconnected } = useAccount();
+  const { address, isDisconnected } = useAccount();
   const [loggingOut, setLoggingOut] = useState(false); // Add this line
 
   const handleLogout = async () => {
@@ -69,4 +69,4 @@ const InboxPage = () => {
   );
 };
 
-export default InboxPage;
+export default Page;
