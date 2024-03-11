@@ -23,14 +23,13 @@
     "buffer": "^6.0.3",
     "ethers": "^5.7.0",
     "install": "^0.13.0",
-    "npm": "^10.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.7",
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.8",
-    "viem": "latest",
-    "wagmi": "latest"
+    "viem": "^1.19.6",
+    "wagmi": "^1.4.13"
   },
   "eslintConfig": {
     "extends": [
